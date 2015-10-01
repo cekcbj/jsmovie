@@ -26,10 +26,11 @@ function formatMovies(divname, movies) {
 $(window).ready(function() {
   $('button').on('click', function() {
     $.getJSON('/movies.json', function(data) {
-      var lowBudgetTitles = _.where(data.movies, { budget: 55 });
+      var movies= data.movies
+      var lowBudgetTitles = _.where(movies, { budget: 55 });
       formatMovies('.low-budget', lowBudgetTitles);
 
-      var leoMovies = _.filter(data.movies, function(movie) {
+      var leoMovies = _.filter(movies, function(movie) {
         return _.contains(movie.stars, 'Leonardo DiCaprio');
       });
       formatMovies('.leo-movies', leoMovies);
